@@ -6,7 +6,8 @@ import Preloader from "../common/preloader/Preloader";
 
 
 
-let Users = props => {
+
+let Users = (props) => {
 
 	let pages = Math.ceil(props.totalUsersCount / props.pageSize);
 	let totalPages = [];
@@ -24,9 +25,13 @@ let Users = props => {
 							<NavLink to={'/profile/' + item.id}>
 								<img src={item.photos.small != null ? item.photos.small : avatar} alt="Avatar"/>
 							</NavLink>
-							{item.followed ?
-								<button onClick={() => props.onFollow(item.id)}>Unfollow</button> :
-								<button onClick={() => props.onUnFollow(item.id)}>Follow</button>
+							{item.followed
+								?<button
+									disabled={props.followingInProgress.some(id => id === item.id)}
+									onClick={() => {props.onFollow(item.id)}}>Unfollow</button>
+								:<button
+									disabled={props.followingInProgress.some(id => id === item.id)}
+									onClick={() => {props.onUnFollow(item.id)}}>Follow</button>
 							}
 						</div>
 						<div className="blockInfo">
@@ -44,7 +49,6 @@ let Users = props => {
 						}} className={props.currentPage === p ? 'currentPage' : null} key={i}>{p}</span>
 					)}
 				</div>
-				{/*<button className="usersWrapper_items-showMore">Show more</button>*/}
 			</div>
 		</div>
 		{props.isFetching ? <Preloader/> : null}

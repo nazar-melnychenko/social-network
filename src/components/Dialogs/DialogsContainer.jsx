@@ -1,12 +1,11 @@
-// import React from "react";
 import Dialogs from "./Dialogs";
-import {addMassageActionCreator, updateMassageActionCreator} from '../../redax/dialogsReducer';
+import {addMassageActionCreator, updateMassageActionCreator} from '../../redux/dialogsReducer';
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 const mapStateToProps = (state) => {
 	return {
 		state: state.dialogsPage,
-		tempMassage: state.dialogsPage.tempMassage
 	};
 };
 
@@ -19,8 +18,10 @@ const mapDispatchToProps = (dispatch) => {
 			dispatch(addMassageActionCreator());
 		}
 	};
-}
+};
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsRedirect = withAuthRedirect(Dialogs);
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsRedirect);
 
 export default DialogsContainer;

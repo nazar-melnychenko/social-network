@@ -25,10 +25,10 @@ const dialogsReducer = (state = init, action) => {
 			if (state.tempMassage !== '') {
 				return {
 					...state,
+					massages: [...state.massages, {id: 7, massage: state.tempMassage}],
 					tempMassage: '',
-					massages: [...state.massages, {id: 7, massage: state.tempMassage}]
 				};
-			};
+			}
 			return state;
 
 		case 'UPDATE-MASSAGE':
@@ -38,7 +38,7 @@ const dialogsReducer = (state = init, action) => {
 			};
 		default:
 			return state;
-	};
+	}
 };
 
 

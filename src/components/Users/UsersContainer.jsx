@@ -1,45 +1,34 @@
 import {connect} from "react-redux";
 import {
-	setUsers,
-	handleFollow,
-	handleUnFollow,
-	hendleSetCurrentPage,
-	setTotalPage,
-	setFetching
-} from '../../redax/usersReducer';
+	handleSetCurrentPage,
+	getUsers,
+	follow,
+	unFollow
+} from '../../redux/usersReducer';
 import React from "react";
-import * as axios from "axios";
 import Users from "./Users";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import Dialogs from "../Dialogs/Dialogs";
+
 
 class UsersContainer extends React.Component {
 
 	componentDidMount() {
-		this.props.setFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-			.then(respons => {
-				this.props.setUsers(respons.data.items);
-				this.props.setTotalPage(respons.data.totalCount);
-				this.props.setFetching(false);
-			});
+		this.props.getUsers(this.props.currentPage, this.props.pageSize);
 	}
 
 	onFollow = (id) => {
-		this.props.handleFollow(id);
+		this.props.follow(id)
 	};
 
 	onUnFollow = (id) => {
-		this.props.handleUnFollow(id);
+		this.props.unFollow(id);
+
 	};
 
 	onSetCurrentPage = (currentPage) => {
-		this.props.setFetching(true);
-		axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
-			.then(respons => {
-				this.props.setUsers(respons.data.items);
-				this.props.setTotalPage(respons.data.totalCount);
-				this.props.setFetching(false);
-			});
-		this.props.hendleSetCurrentPage(currentPage);
+		this.props.getUsers(currentPage, this.props.pageSize);
+		this.props.handleSetCurrentPage(currentPage);
 	};
 
 	render() {
@@ -52,9 +41,10 @@ class UsersContainer extends React.Component {
 		              onUnFollow={this.onUnFollow}
 		              onSetCurrentPage={this.onSetCurrentPage}
 		              isFetching={this.props.isFetching}
+		              followingInProgress={this.props.followingInProgress}
 		/>
 	}
-};
+}
 
 const mapStateToProps = (state) => {
 	return {
@@ -62,18 +52,18 @@ const mapStateToProps = (state) => {
 		pageSize: state.usersPage.pageSize,
 		totalUsersCount: state.usersPage.totalUsersCount,
 		currentPage: state.usersPage.currentPage,
-		isFetching: state.usersPage.isFetching
+		isFetching: state.usersPage.isFetching,
+		followingInProgress: state.usersPage.followingInProgress
 	}
 };
 
-export default connect(mapStateToProps, {
-	setUsers,
-	handleFollow,
-	handleUnFollow,
-	hendleSetCurrentPage,
-	setTotalPage,
-	setFetching
-})(UsersContainer);
+
+export default withAuthRedirect(connect(mapStateToProps, {
+	handleSetCurrentPage,
+	getUsers,
+	follow,
+	unFollow
+})(UsersContainer));
 
 
 

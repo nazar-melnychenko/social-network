@@ -1,3 +1,5 @@
+import {profileAPI} from "../api/api";
+
 let init = {
 	posts: [
 		{id: 1, post: 'Post 1', likeCount: 3},
@@ -5,6 +7,7 @@ let init = {
 		{id: 3, post: 'Post 3', likeCount: 7},
 	],
 	newPostTemp: '',
+	profile: null,
 };
 
 const profileReducer = (state = init, action) => {
@@ -29,7 +32,7 @@ const profileReducer = (state = init, action) => {
 		case 'SET-USER-PROFILE':
 			return {
 				...state,
-				newPostTemp: action.newPost
+				profile: action.userProfile
 			};
 
 		default:
@@ -37,24 +40,17 @@ const profileReducer = (state = init, action) => {
 	}
 };
 
-export const addPostActionCreator = () => {
-	return {
-		type: 'ADD-POST'
-	}
-};
+export const addPostActionCreator = () => ({type: 'ADD-POST'});
+export const updatePostActionCreator = (text) => ({type: 'UPDATE-POST', newPost: text });
+export const setUserProfile = (profile) => ({type: 'SET-USER-PROFILE', userProfile: profile});
 
-export const updatePostActionCreator = (text) => {
-	return {
-		type: 'UPDATE-POST',
-		newPost: text
-	}
-};
+/*---Thunk---*/
 
-export const setUserProfile = (profile) => {
-	return {
-		type: 'SET-USER-PROFILE',
-		userProfile: profile
-	}
+export const getProfileUser = (userId) => (dispatch) => {
+	profileAPI.profileUsers(userId)
+		.then(respons => {
+			dispatch(setUserProfile(respons.data));
+		});
 };
 
 export default profileReducer;

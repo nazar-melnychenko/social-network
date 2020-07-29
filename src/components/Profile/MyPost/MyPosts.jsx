@@ -23,8 +23,8 @@ const MyPosts = (props) => {
 				value={props.newPostTemp}
 			/><br/>
 			<button onClick={onAddPost}>Add post</button>
-			{props.posts.map(item =>
-				<Post text={item.post} likeCount={item.likeCount}/>
+			{props.posts.map((item, i)=>
+				<Post key={i} text={item.post} likeCount={item.likeCount}/>
 			)}
 		</>
 	);
