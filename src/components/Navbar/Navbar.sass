@@ -1,46 +1,54 @@
 .nav
-	grid-area: nav
-	background-color: #00b45a
-	min-height: 100vh
-	padding: 10px
-	.contentWrapper
-		position: sticky
-		position: -webkit-sticky
-		top: 5px
-		ul
-			li
-				list-style: none
-				padding-bottom: 10px
-				&:last-child
-					padding-top: 30px
-				a
-					text-decoration: none
-					color: #fff
-					font-size: 23px
-					&.active
-						color: gold
-						
-		.friends
-			margin-top: 70px
-			h2
-				color: #fff
-				font-weight: 300
-				font-size: 40px
-				letter-spacing: 3px
-				
-			&-items
-				display: flex
-				flex-wrap: wrap
-				justify-content: space-around
-				.item
-					display: flex
-					flex-direction: column
-					margin: 15px 5px
-					color: #fff
-					align-items: center
-					text-decoration: none
-					img
-						margin-bottom: 3px
-						width: 50px
-						height: 50px
+  grid-area: nav
+  background-color: #00b45a
+  min-height: 100vh
+  padding: 10px
+
+  .contentWrapper
+    position: sticky
+    position: -webkit-sticky
+    top: 5px
+
+    ul
+      li
+        list-style: none
+        padding-bottom: 10px
+
+        &:last-child
+          padding-top: 30px
+
+        a
+          text-decoration: none
+          color: #fff
+          font-size: 23px
+
+          &.active
+            color: gold
+
+    .friends
+      margin-top: 70px
+
+      h2
+        color: #fff
+        font-weight: 300
+        font-size: 40px
+        letter-spacing: 3px
+
+      &-items
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-around
+
+        .item
+          display: flex
+          flex-direction: column
+          margin: 15px 5px
+          color: #fff
+          align-items: center
+          text-decoration: none
+
+          img
+            margin-bottom: 3px
+            width: 50px
+            height: 50px
 				

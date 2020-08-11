@@ -15,44 +15,27 @@ let init = {
 		{id: 4, massage: 'Message 4'},
 		{id: 5, massage: 'Message 5'},
 	],
-	tempMassage: '',
 };
 
 const dialogsReducer = (state = init, action) => {
 
 	switch (action.type) {
 		case 'ADD-MASSAGE':
-			if (state.tempMassage !== '') {
+			if (action.massage !== '') {
 				return {
 					...state,
-					massages: [...state.massages, {id: 7, massage: state.tempMassage}],
-					tempMassage: '',
+					massages: [...state.massages, {id: 7, massage: action.massage}],
 				};
 			}
 			return state;
 
-		case 'UPDATE-MASSAGE':
-			return {
-				...state,
-				tempMassage: action.newMassage
-			};
 		default:
 			return state;
 	}
 };
 
 
-export const addMassageActionCreator = () => {
-	return {
-		type: 'ADD-MASSAGE'
-	}
-};
+export const addMassage = (massage) => ({ type: 'ADD-MASSAGE', massage});
 
-export const updateMassageActionCreator = (text) => {
-	return {
-		type: 'UPDATE-MASSAGE',
-		newMassage: text
-	}
-};
 
 export default dialogsReducer;

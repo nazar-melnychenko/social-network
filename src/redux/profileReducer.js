@@ -6,28 +6,21 @@ let init = {
 		{id: 2, post: 'Post 2', likeCount: 5},
 		{id: 3, post: 'Post 3', likeCount: 7},
 	],
-	newPostTemp: '',
 	profile: null,
+	status: ''
 };
 
 const profileReducer = (state = init, action) => {
 
 	switch (action.type) {
 		case 'ADD-POST':
-			if (state.newPostTemp !== '') {
+			if (action.massage !== '') {
 				return {
 					...state,
-					newPostTemp: '',
-					posts: [...state.posts, {id: 8, post: state.newPostTemp, likeCount: 3}]
+					posts: [...state.posts, {id: 8, post: action.massage, likeCount: 3}]
 				}
 			}
 			return state;
-
-		case 'UPDATE-POST':
-			return {
-				...state,
-				newPostTemp: action.newPost
-			};
 
 		case 'SET-USER-PROFILE':
 			return {
@@ -35,21 +28,44 @@ const profileReducer = (state = init, action) => {
 				profile: action.userProfile
 			};
 
+		case 'SET-USER-STATUS':
+			return {
+				...state,
+				status: action.status
+			};
+
+
 		default:
 			return state;
 	}
 };
 
-export const addPostActionCreator = () => ({type: 'ADD-POST'});
-export const updatePostActionCreator = (text) => ({type: 'UPDATE-POST', newPost: text });
+export const addPost = (massage) => ({type: 'ADD-POST', massage});
 export const setUserProfile = (profile) => ({type: 'SET-USER-PROFILE', userProfile: profile});
+const setUserStatus = (status) => ({type: 'SET-USER-STATUS', status});
 
 /*---Thunk---*/
 
 export const getProfileUser = (userId) => (dispatch) => {
 	profileAPI.profileUsers(userId)
-		.then(respons => {
-			dispatch(setUserProfile(respons.data));
+		.then(response => {
+			dispatch(setUserProfile(response.data));
+		});
+};
+
+export const getStatusUser = (userId) => (dispatch) => {
+	profileAPI.getUsersStatus(userId)
+		.then(response => {
+			dispatch(setUserStatus(response.data));
+		});
+};
+
+export const updateStatusUser = (status) => (dispatch) => {
+	profileAPI.updateStatus(status)
+		.then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(setUserStatus(status))
+			}
 		});
 };
 

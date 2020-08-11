@@ -81,17 +81,17 @@ const handleUnFollow = (id) => ({type: 'UN-FOLLOW', id});
 const setTotalPage = (totalUsersCount) => ({type: 'SET-TOTAL-USER-COUNT', totalUsersCount});
 const setFetching = (isFetching) => ({type: 'SET-FETCHING', isFetching});
 const toggleFollowingProgress = (isProgress, userId) => ({type: 'SET-FOLLOWING-PROGRESS', isProgress, userId});
-
-export const handleSetCurrentPage = (currentPage) => ({type: 'SET-CURRENT-PAGE', currentPage});
+const setCurrentPage = (currentPage) => ({type: 'SET-CURRENT-PAGE', currentPage});
 
 /*---Thunk---*/
 
-export const getUsers = (currentPage,pageSize) => (dispatch) => {
+export const getUsers = (page, pageSize) => (dispatch) => {
 	dispatch(setFetching(true));
-	usersAPI.getUsers(currentPage, pageSize)
+	usersAPI.getUsers(page, pageSize)
 		.then(data => {
 			dispatch(setUsers(data.items));
-			dispatch(setTotalPage(data.totalCount));
+			dispatch(setCurrentPage(page));
+			if (page === 1) dispatch(setTotalPage(data.totalCount));
 			dispatch(setFetching(false));
 		});
 };
@@ -99,8 +99,8 @@ export const getUsers = (currentPage,pageSize) => (dispatch) => {
 export const follow = (id) => (dispatch) => {
 	dispatch(toggleFollowingProgress(true, id));
 	followAPI.followUsers(id)
-		.then(respons => {
-			if (respons.data.resultCode === 0) {
+		.then(response => {
+			if (response.data.resultCode === 0) {
 				dispatch(handleFollow(id));
 			}
 			dispatch(toggleFollowingProgress(false, id));
@@ -110,8 +110,8 @@ export const follow = (id) => (dispatch) => {
 export const unFollow = (id) => (dispatch) => {
 	dispatch(toggleFollowingProgress(true, id));
 	followAPI.unFollowUsers(id)
-		.then(respons => {
-			if (respons.data.resultCode === 0) {
+		.then(response => {
+			if (response.data.resultCode === 0) {
 				dispatch(handleUnFollow(id));
 			}
 			dispatch(toggleFollowingProgress(false, id));

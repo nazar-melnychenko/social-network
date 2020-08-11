@@ -1,7 +1,8 @@
 import Dialogs from "./Dialogs";
-import {addMassageActionCreator, updateMassageActionCreator} from '../../redux/dialogsReducer';
+import {addMassage} from '../../redux/dialogsReducer';
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => {
 	return {
@@ -9,19 +10,7 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		hendleUpdateMassage: (text) => {
-			dispatch(updateMassageActionCreator(text));
-		},
-		hendleAddMassage: () => {
-			dispatch(addMassageActionCreator());
-		}
-	};
-};
-
-const DialogsRedirect = withAuthRedirect(Dialogs);
-
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsRedirect);
-
-export default DialogsContainer;
+export default compose(
+	withAuthRedirect,
+	connect(mapStateToProps, {addMassage})
+)(Dialogs);
