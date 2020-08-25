@@ -1,7 +1,7 @@
-import React from "react";
-import "./ProfileInfo.sass";
-import avatar from "../../../assets/img/avatar.png";
-import ProfileStatus from "./ProfileStatus";
+import React from "react"
+import "./ProfileInfo.sass"
+import avatar from "../../../assets/img/avatar.png"
+import ProfileStatus from "./ProfileStatus"
 
 const ProfileInfo = (props) => {
 	return (
@@ -34,7 +34,7 @@ const ProfileInfo = (props) => {
 				</ul>
 			</div>
 		</>
-	);
-};
+	)
+}
 
-export default ProfileInfo;
+export default ProfileInfo

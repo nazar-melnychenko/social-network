@@ -15,7 +15,7 @@ let init = {
 		{id: 4, massage: 'Message 4'},
 		{id: 5, massage: 'Message 5'},
 	],
-};
+}
 
 const dialogsReducer = (state = init, action) => {
 
@@ -25,17 +25,17 @@ const dialogsReducer = (state = init, action) => {
 				return {
 					...state,
 					massages: [...state.massages, {id: 7, massage: action.massage}],
-				};
+				}
 			}
-			return state;
+			return state
 
 		default:
-			return state;
+			return state
 	}
-};
+}
 
 
-export const addMassage = (massage) => ({ type: 'ADD-MASSAGE', massage});
+export const addMassage = (massage) => ({ type: 'ADD-MASSAGE', massage})
 
 
-export default dialogsReducer;
+export default dialogsReducer

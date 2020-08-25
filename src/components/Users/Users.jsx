@@ -1,16 +1,16 @@
-import React from 'react';
-import "./Users.sass";
-import avatar from "../../assets/img/avatar.png";
-import {NavLink} from "react-router-dom";
-import Preloader from "../common/Preloader/Preloader";
+import React from 'react'
+import "./Users.sass"
+import avatar from "../../assets/img/avatar.png"
+import {NavLink} from "react-router-dom"
+import Preloader from "../common/Preloader/Preloader"
 
 
 let Users = (props) => {
 
-	let pages = Math.ceil(props.totalUsersCount / props.pageSize);
-	let totalPages = [];
+	let pages = Math.ceil(props.totalUsersCount / props.pageSize)
+	let totalPages = []
 	for (let i = 1; i <= pages; i++) {
-		totalPages.push(i);
+		totalPages.push(i)
 	}
 
 
@@ -59,7 +59,7 @@ let Users = (props) => {
 				</div>
 			}
 		</>
-	);
-};
+	)
+}
 
-export default Users;
+export default Users

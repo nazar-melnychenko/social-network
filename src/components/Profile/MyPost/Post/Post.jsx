@@ -1,5 +1,5 @@
-import React from "react";
-import "./Post.sass";
+import React from "react"
+import "./Post.sass"
 
 const Post = (props) => {
 	return (
@@ -10,7 +10,7 @@ const Post = (props) => {
 				</div>
 				<div className="likes">Likes: {props.likeCount}</div>
 			</div>
-	);
-};
+	)
+}
 
-export default Post;
+export default Post

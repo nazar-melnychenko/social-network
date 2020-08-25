@@ -1,4 +1,4 @@
-import {profileAPI} from "../api/api";
+import {profileAPI} from "../api/api"
 
 let init = {
 	posts: [
@@ -8,7 +8,7 @@ let init = {
 	],
 	profile: null,
 	status: ''
-};
+}
 
 const profileReducer = (state = init, action) => {
 
@@ -20,45 +20,45 @@ const profileReducer = (state = init, action) => {
 					posts: [...state.posts, {id: 8, post: action.massage, likeCount: 3}]
 				}
 			}
-			return state;
+			return state
 
 		case 'SET-USER-PROFILE':
 			return {
 				...state,
 				profile: action.userProfile
-			};
+			}
 
 		case 'SET-USER-STATUS':
 			return {
 				...state,
 				status: action.status
-			};
+			}
 
 
 		default:
-			return state;
+			return state
 	}
-};
+}
 
-export const addPost = (massage) => ({type: 'ADD-POST', massage});
-export const setUserProfile = (profile) => ({type: 'SET-USER-PROFILE', userProfile: profile});
-const setUserStatus = (status) => ({type: 'SET-USER-STATUS', status});
+export const addPost = (massage) => ({type: 'ADD-POST', massage})
+export const setUserProfile = (profile) => ({type: 'SET-USER-PROFILE', userProfile: profile})
+const setUserStatus = (status) => ({type: 'SET-USER-STATUS', status})
 
 /*---Thunk---*/
 
 export const getProfileUser = (userId) => (dispatch) => {
 	profileAPI.profileUsers(userId)
 		.then(response => {
-			dispatch(setUserProfile(response.data));
-		});
-};
+			dispatch(setUserProfile(response.data))
+		})
+}
 
 export const getStatusUser = (userId) => (dispatch) => {
 	profileAPI.getUsersStatus(userId)
 		.then(response => {
-			dispatch(setUserStatus(response.data));
-		});
-};
+			dispatch(setUserStatus(response.data))
+		})
+}
 
 export const updateStatusUser = (status) => (dispatch) => {
 	profileAPI.updateStatus(status)
@@ -66,7 +66,7 @@ export const updateStatusUser = (status) => (dispatch) => {
 			if (response.data.resultCode === 0) {
 				dispatch(setUserStatus(status))
 			}
-		});
-};
+		})
+}
 
-export default profileReducer;
+export default profileReducer

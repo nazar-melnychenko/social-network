@@ -1,11 +1,11 @@
-import React from "react";
-import "./MyPosts.sass";
-import Post from "./Post/Post";
-import {Field, reduxForm} from "redux-form";
-import {maxLength, required} from "../../../utils/validators/validators";
-import {Textarea} from "../../common/FormsControls/FormsControls";
+import React from "react"
+import "./MyPosts.sass"
+import Post from "./Post/Post"
+import {Field, reduxForm} from "redux-form"
+import {maxLength, required} from "../../../utils/validators/validators"
+import {Textarea} from "../../common/FormsControls/FormsControls"
 
-const maxLength10 = maxLength(10);
+const maxLength10 = maxLength(10)
 
 let PostForm = (props) => {
 	return (
@@ -18,15 +18,15 @@ let PostForm = (props) => {
 			<br/>
 			<button>Add post</button>
 		</form>
-	);
-};
+	)
+}
 
-PostForm = reduxForm({form: 'post'})(PostForm);
+PostForm = reduxForm({form: 'post'})(PostForm)
 
 const MyPosts = (props) => {
 	const addNewPost = (formData) => {
-		props.addPost(formData.massage);
-		formData.massage = '';
+		props.addPost(formData.massage)
+		formData.massage = ''
 	}
 
 	return (
@@ -36,7 +36,7 @@ const MyPosts = (props) => {
 				<Post key={i} text={item.post} likeCount={item.likeCount}/>
 			)}
 		</>
-	);
+	)
 }
 
-export default MyPosts;
+export default MyPosts

@@ -1,7 +1,7 @@
-import React from "react";
-import logo from "../../assets/logo.png";
-import "./Header.sass";
-import {NavLink} from "react-router-dom";
+import React from "react"
+import logo from "../../assets/logo.png"
+import "./Header.sass"
+import {NavLink} from "react-router-dom"
 
 const Header = (props) => {
 	return (
@@ -17,7 +17,7 @@ const Header = (props) => {
 				}
 			</div>
 		</header>
-	);
-};
+	)
+}
 
-export default Header;
+export default Header

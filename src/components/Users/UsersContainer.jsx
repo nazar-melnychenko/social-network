@@ -1,11 +1,11 @@
-import {connect} from "react-redux";
+import {connect} from "react-redux"
 import {
 	getUsers,
 	follow,
 	unFollow
-} from '../../redux/usersReducer';
-import React from "react";
-import Users from "./Users";
+} from '../../redux/usersReducer'
+import React from "react"
+import Users from "./Users"
 import {
 	getAllUsers,
 	getCurrentPage,
@@ -13,27 +13,27 @@ import {
 	getIsFetching,
 	getPageSize,
 	getTotalUsersCount
-} from "../../redux/selectors/users";
+} from "../../redux/selectors/users"
 
 
 class UsersContainer extends React.Component {
 
 	componentDidMount() {
-		this.props.getUsers(this.props.currentPage, this.props.pageSize);
+		this.props.getUsers(this.props.currentPage, this.props.pageSize)
 	}
 
 	onFollow = (id) => {
 		this.props.follow(id)
-	};
+	}
 
 	onUnFollow = (id) => {
-		this.props.unFollow(id);
+		this.props.unFollow(id)
 
-	};
+	}
 
 	getUsersForCurrentPage = (currentPage) => {
-		this.props.getUsers(currentPage, this.props.pageSize);
-	};
+		this.props.getUsers(currentPage, this.props.pageSize)
+	}
 
 	render() {
 		return <Users totalUsersCount={this.props.totalUsersCount}
@@ -56,9 +56,9 @@ const mapStateToProps = (state) => ({
 	currentPage: getCurrentPage(state),
 	isFetching: getIsFetching(state),
 	followingInProgress: getFollowingInProgress(state)
-});
+})
 
-export default connect(mapStateToProps, {getUsers, follow, unFollow})(UsersContainer);
+export default connect(mapStateToProps, {getUsers, follow, unFollow})(UsersContainer)
 
 
 

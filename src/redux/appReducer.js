@@ -1,9 +1,9 @@
-import {auth} from "./authReducer";
+import {auth} from "./authReducer"
 
 
 const init = {
 	initialized: false,
-};
+}
 
 const appReducer = (state = init, action) => {
 
@@ -12,26 +12,26 @@ const appReducer = (state = init, action) => {
 			return {
 				...state,
 				initialized: true,
-			};
+			}
 		default:
-			return state;
+			return state
 	}
-};
+}
 
-const initializedSuccess = () => ({type: 'SET-INITIALIZED'});
+const initializedSuccess = () => ({type: 'SET-INITIALIZED'})
 
 
 /*---Thunk---*/
 
 export const initializeApp = () => (dispatch) => {
 
-	let promise = dispatch(auth());
+	let promise = dispatch(auth())
 
 	Promise.all([promise])
 		.then(() => {
 			dispatch(initializedSuccess())
 		})
-};
+}
 
 
-export default appReducer;
+export default appReducer

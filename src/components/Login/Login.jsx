@@ -1,8 +1,8 @@
-import React from "react";
-import "./Login.sass";
-import {Field, reduxForm} from "redux-form";
-import {Input} from "../common/FormsControls/FormsControls";
-import {email, required} from "../../utils/validators/validators";
+import React from "react"
+import "./Login.sass"
+import {Field, reduxForm} from "redux-form"
+import {Input} from "../common/FormsControls/FormsControls"
+import {email, required} from "../../utils/validators/validators"
 
 let LoginForm = (props) => {
 	return (
@@ -33,15 +33,15 @@ let LoginForm = (props) => {
 			{props.error && <div className="summaryError">{props.error}</div>}
 			<button>Log in</button>
 		</form>
-	);
-};
+	)
+}
 
-LoginForm = reduxForm({form: 'login'})(LoginForm);
+LoginForm = reduxForm({form: 'login'})(LoginForm)
 
 const Login = (props) => {
 
 	const onSubmit = (formData) => {
-		props.login(formData.email, formData.password, formData.rememberMe, formData.captcha);
+		props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
 	}
 
 	return (
@@ -51,7 +51,7 @@ const Login = (props) => {
 				<LoginForm onSubmit={onSubmit} captcha={props.captcha}/>
 			</div>
 		</>
-	);
-};
+	)
+}
 
-export default Login;
+export default Login

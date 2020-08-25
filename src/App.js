@@ -1,21 +1,21 @@
-import React from "react";
-import "./App.sass";
-import {Route} from "react-router-dom";
-import HeaderContainer from "./components/Header/HeaderContainer";
-import Navbar from "./components/Navbar/Navbar";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import LoginContainer from "./components/Login/LoginContainer";
-import {connect} from "react-redux";
-import {initializeApp} from "./redux/appReducer";
-import Preloader from "./components/common/Preloader/Preloader";
+import React from "react"
+import "./App.sass"
+import {Route} from "react-router-dom"
+import HeaderContainer from "./components/Header/HeaderContainer"
+import Navbar from "./components/Navbar/Navbar"
+import DialogsContainer from "./components/Dialogs/DialogsContainer"
+import UsersContainer from "./components/Users/UsersContainer"
+import ProfileContainer from "./components/Profile/ProfileContainer"
+import LoginContainer from "./components/Login/LoginContainer"
+import {connect} from "react-redux"
+import {initializeApp} from "./redux/appReducer"
+import Preloader from "./components/common/Preloader/Preloader"
 
 
 class App extends React.Component {
 
 	componentDidMount() {
-		this.props.initializeApp();
+		this.props.initializeApp()
 	}
 
 
@@ -39,7 +39,7 @@ class App extends React.Component {
 					: <Preloader />
 				}
 			</>
-		);
+		)
 	}
 }
 
@@ -47,4 +47,4 @@ const mapStateToProps = (state) => ({
 	initialized: state.app.initialized
 })
 
-export default connect(mapStateToProps, {initializeApp})(App);
+export default connect(mapStateToProps, {initializeApp})(App)
