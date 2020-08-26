@@ -14,12 +14,14 @@ import {
 	getPageSize,
 	getTotalUsersCount
 } from "../../redux/selectors/users"
+import Paginator from "../common/Paginator/Paginator";
 
 
 class UsersContainer extends React.Component {
 
 	componentDidMount() {
-		this.props.getUsers(this.props.currentPage, this.props.pageSize)
+		const {currentPage, pageSize} = this.props
+		this.props.getUsers(currentPage, pageSize)
 	}
 
 	onFollow = (id) => {
@@ -32,20 +34,27 @@ class UsersContainer extends React.Component {
 	}
 
 	getUsersForCurrentPage = (currentPage) => {
-		this.props.getUsers(currentPage, this.props.pageSize)
+		const {pageSize} = this.props
+		this.props.getUsers(currentPage, pageSize)
 	}
 
 	render() {
-		return <Users totalUsersCount={this.props.totalUsersCount}
-		              pageSize={this.props.pageSize}
-		              currentPage={this.props.currentPage}
-		              users={this.props.users}
-		              onFollow={this.onFollow}
-		              onUnFollow={this.onUnFollow}
-		              onSetCurrentPage={this.getUsersForCurrentPage}
-		              isFetching={this.props.isFetching}
-		              followingInProgress={this.props.followingInProgress}
-		/>
+		return (
+			<div>
+				<Users users={this.props.users}
+				       onFollow={this.onFollow}
+				       onUnFollow={this.onUnFollow}
+				       isFetching={this.props.isFetching}
+				       followingInProgress={this.props.followingInProgress}
+				/>
+				<Paginator
+					totalItemsCount={this.props.totalUsersCount}
+					pageSize={this.props.pageSize}
+					onSetCurrentPage={this.getUsersForCurrentPage}
+					currentPage={this.props.currentPage}
+				/>
+			</div>
+		)
 	}
 }
 

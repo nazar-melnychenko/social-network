@@ -2,7 +2,7 @@ import {followAPI, usersAPI} from "../api/api"
 
 const init = {
 	users: [],
-	pageSize: 100,
+	pageSize: 12,
 	totalUsersCount: 0,
 	currentPage: 1,
 	isFetching: false,

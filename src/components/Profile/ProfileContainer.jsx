@@ -10,15 +10,21 @@ import Preloader from "../common/Preloader/Preloader"
 
 class ProfileContainer extends React.Component {
 
-
-	componentDidMount() {
+	refreshProfile() {
+		this.props.setUserProfile(null)
 		let queryId = this.props.match.params.userId || this.props.userId
 		this.props.getProfileUser(queryId)
 		this.props.getStatusUser(queryId)
 	}
 
-	componentWillUnmount() {
-		this.props.setUserProfile(null)
+	componentDidMount() {
+		this.refreshProfile()
+	}
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		if (this.props.match.params.userId !== prevProps.match.params.userId) {
+			this.refreshProfile()
+		}
 	}
 
 	render() {
@@ -28,6 +34,7 @@ class ProfileContainer extends React.Component {
 				: <Profile profile={this.props.profile}
 				           status={this.props.status}
 				           updateStatusUser={this.props.updateStatusUser}
+				           isOwner={!!this.props.match.params.userId}
 				/>
 			}
 		</>

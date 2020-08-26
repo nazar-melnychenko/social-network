@@ -1,36 +1,24 @@
 import React from "react"
 import "./Login.sass"
-import {Field, reduxForm} from "redux-form"
-import {Input} from "../common/FormsControls/FormsControls"
+import {reduxForm} from "redux-form"
+import {createField, Input} from "../common/FormsControls/FormsControls"
 import {email, required} from "../../utils/validators/validators"
 
-let LoginForm = (props) => {
+let LoginForm = ({handleSubmit, captcha, error}) => {
 	return (
-		<form onSubmit={props.handleSubmit}>
-			<Field component={Input}
-			       name="email"
-			       type="email"
-			       placeholder="E-mail"
-			       validate={[required, email]}
-			/>
-			<Field component={Input}
-			       name="password"
-			       type="password"
-			       placeholder="Password"
-			       validate={[required]}
-			/>
-			<span><Field component="input" name="rememberMe" type="checkbox"/> Remember me</span>
-			{props.captcha &&
+		<form onSubmit={handleSubmit}>
+			{createField(Input, 'email', 'email', 'E-mail', [required, email])}
+			{createField(Input, 'password', 'password', 'Password', [required])}
+			<span>
+				{createField(Input, 'rememberMe', 'checkbox', 'Password', null)}Remember me
+			</span>
+			{captcha &&
 			<>
-				<img src={props.captcha} alt="Captcha"/>
-				<Field component={Input}
-				       name="captcha"
-				       type="text"
-				       validate={[required]}
-				/>
+				<img src={captcha} alt="Captcha"/>
+				{createField(Input, 'captcha', 'text', null, [required])}
 			</>
 			}
-			{props.error && <div className="summaryError">{props.error}</div>}
+			{error && <div className="summaryError">{error}</div>}
 			<button>Log in</button>
 		</form>
 	)
@@ -38,17 +26,17 @@ let LoginForm = (props) => {
 
 LoginForm = reduxForm({form: 'login'})(LoginForm)
 
-const Login = (props) => {
+const Login = ({login, captcha}) => {
 
 	const onSubmit = (formData) => {
-		props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
+		login(formData.email, formData.password, formData.rememberMe, formData.captcha)
 	}
 
 	return (
 		<>
 			<div className="loginWrapper">
 				<h1>Sign In</h1>
-				<LoginForm onSubmit={onSubmit} captcha={props.captcha}/>
+				<LoginForm onSubmit={onSubmit} captcha={captcha}/>
 			</div>
 		</>
 	)
