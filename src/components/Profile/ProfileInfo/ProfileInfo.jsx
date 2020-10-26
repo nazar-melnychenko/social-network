@@ -25,7 +25,7 @@ const ProfileInfo = ({profile, status, updateStatusUser, isOwner}) => {
 				{profile.lookingForAJob ? <p>Опис: {profile.lookingForAJobDescription}</p> : null}
 				<ul>
 					{profile.contacts.facebook ?
-						<li><a href={props.profile.contacts.facebook}>Facebook</a></li> : null}
+						<li><a href={profile.contacts.facebook}>Facebook</a></li> : null}
 					{profile.contacts.website ? <li><a href={profile.contacts.website}>Веб сайт</a></li> : null}
 					{profile.contacts.vk ? <li><a href={profile.contacts.vk}>Вконтакте</a></li> : null}
 					{profile.contacts.twitter ? <li><a href={profile.contacts.twitter}>Twitter</a></li> : null}
