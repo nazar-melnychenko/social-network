@@ -4,6 +4,7 @@ import avatar from "../../../assets/img/avatar.png"
 import ProfileStatus from "./ProfileStatus"
 
 const ProfileInfo = ({profile, status, updateStatusUser, isOwner}) => {
+
 	return (
 		<>
 			<div className="image">
