@@ -1,12 +1,14 @@
 import { applyMiddleware, combineReducers, compose, createStore } from "redux"
+import { reducer as formReducer } from "redux-form"
+import thunkMiddleware from "redux-thunk"
+import createSagaMiddleware from 'redux-saga'
 import appReducer from "./appReducer"
 import profileReducer from "./profileReducer"
 import dialogsReducer from "./dialogsReducer"
 import friendsReducer from "./friendsReducer"
 import usersReducer from "./usersReducer"
 import authReducer from "./authReducer"
-import thunkMiddleware from "redux-thunk"
-import { reducer as formReducer } from "redux-form"
+import rootSagas from "../sagas";
 
 let reducers = combineReducers({
 	app: appReducer,
@@ -18,12 +20,16 @@ let reducers = combineReducers({
 	form: formReducer
 })
 
+const sagaMiddleware = createSagaMiddleware()
+
 
 // let store = createStore(reducers, applyMiddleware(thunkMiddleware))
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(reducers, composeEnhancers(
-	applyMiddleware(thunkMiddleware)
+	applyMiddleware(thunkMiddleware,sagaMiddleware)
 ))
+
+sagaMiddleware.run(rootSagas)
 
 export default store
