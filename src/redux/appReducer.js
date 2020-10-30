@@ -1,4 +1,4 @@
-import {auth} from "./authReducer"
+import { auth } from "./authReducer"
 
 
 const init = {
@@ -18,7 +18,7 @@ const appReducer = (state = init, action) => {
 	}
 }
 
-const initializedSuccess = () => ({type: 'SET-INITIALIZED'})
+const initializedSuccess = () => ({ type: 'SET-INITIALIZED' })
 
 
 /*---Thunk---*/

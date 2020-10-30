@@ -1,11 +1,10 @@
-import profileReducer, {addPost} from "./profileReducer"
-import React from "react"
+import profileReducer, { addPost } from "./profileReducer"
 
 let init = {
 	posts: [
-		{id: 1, post: 'Post 1', likeCount: 3},
-		{id: 2, post: 'Post 2', likeCount: 5},
-		{id: 3, post: 'Post 3', likeCount: 7},
+		{ id: 1, post: 'Post 1', likeCount: 3 },
+		{ id: 2, post: 'Post 2', likeCount: 5 },
+		{ id: 3, post: 'Post 3', likeCount: 7 },
 	],
 	profile: null,
 	status: ''

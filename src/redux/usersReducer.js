@@ -1,4 +1,4 @@
-import {followAPI, usersAPI} from "../api/api"
+import { followAPI, usersAPI } from "../api/api"
 
 const init = {
 	users: [],
@@ -17,7 +17,7 @@ const usersReducer = (state = init, action) => {
 				...state,
 				users: state.users.map(item => {
 						if (item.id === action.id) {
-							return {...item, followed: false}
+							return { ...item, followed: false }
 						}
 						return item
 					}
@@ -29,7 +29,7 @@ const usersReducer = (state = init, action) => {
 				...state,
 				users: state.users.map(item => {
 					if (item.id === action.id) {
-						return {...item, followed: true}
+						return { ...item, followed: true }
 					}
 					return item
 				})
@@ -75,13 +75,13 @@ const usersReducer = (state = init, action) => {
 
 /*---AC---*/
 
-const setUsers = (users) => ({type: 'SET-USERS', users})
-const handleFollow = (id) => ({type: 'FOLLOW', id})
-const handleUnFollow = (id) => ({type: 'UN-FOLLOW', id})
-const setTotalPage = (totalUsersCount) => ({type: 'SET-TOTAL-USER-COUNT', totalUsersCount})
-const setFetching = (isFetching) => ({type: 'SET-FETCHING', isFetching})
-const toggleFollowingProgress = (isProgress, userId) => ({type: 'SET-FOLLOWING-PROGRESS', isProgress, userId})
-const setCurrentPage = (currentPage) => ({type: 'SET-CURRENT-PAGE', currentPage})
+const setUsers = (users) => ({ type: 'SET-USERS', users })
+const handleFollow = (id) => ({ type: 'FOLLOW', id })
+const handleUnFollow = (id) => ({ type: 'UN-FOLLOW', id })
+const setTotalPage = (totalUsersCount) => ({ type: 'SET-TOTAL-USER-COUNT', totalUsersCount })
+const setFetching = (isFetching) => ({ type: 'SET-FETCHING', isFetching })
+const toggleFollowingProgress = (isProgress, userId) => ({ type: 'SET-FOLLOWING-PROGRESS', isProgress, userId })
+const setCurrentPage = (currentPage) => ({ type: 'SET-CURRENT-PAGE', currentPage })
 
 /*---Function---*/
 

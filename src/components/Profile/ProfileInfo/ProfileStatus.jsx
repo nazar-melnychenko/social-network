@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, { useEffect, useState } from "react"
 
 
 const ProfileStatus = (props) => {
@@ -8,7 +8,7 @@ const ProfileStatus = (props) => {
 
 	useEffect(() => {
 		setStatus(props.status)
-	},[props.status])
+	}, [props.status])
 
 	const activateEditMode = () => {
 		setEditMode(true)
@@ -25,7 +25,7 @@ const ProfileStatus = (props) => {
 
 	return (
 		<>
-			{editMode && !props.isOwner
+			{editMode && props.isOwner
 				? <input autoFocus={true}
 				         onBlur={deActivateEditMode}
 				         onChange={handleStatusChange}

@@ -1,4 +1,4 @@
-import {createSelector} from "reselect"
+import { createSelector } from "reselect"
 
 export const getAllUsers = createSelector(
 	(state) => state.usersPage.users,

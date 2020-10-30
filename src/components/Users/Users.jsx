@@ -4,7 +4,7 @@ import Preloader from "../common/Preloader/Preloader"
 import User from "./User";
 
 
-let Users = ({isFetching, users, followingInProgress, onFollow, onUnFollow}) => {
+let Users = ({ isFetching, users, followingInProgress, onFollow, onUnFollow }) => {
 	return (
 		<>
 			{isFetching

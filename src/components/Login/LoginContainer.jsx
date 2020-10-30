@@ -1,8 +1,8 @@
 import React from "react"
 import Login from "./Login"
-import {connect} from "react-redux"
-import {login} from "../../redux/authReducer"
-import {Redirect} from "react-router-dom"
+import { connect } from "react-redux"
+import { login } from "../../redux/authReducer"
+import { Redirect } from "react-router-dom"
 
 
 class LoginContainer extends React.Component {
@@ -23,4 +23,4 @@ const mapDispatchToProps = (state) => ({
 	captcha: state.auth.captcha,
 })
 
-export default connect(mapDispatchToProps, {login})(LoginContainer)
+export default connect(mapDispatchToProps, { login })(LoginContainer)

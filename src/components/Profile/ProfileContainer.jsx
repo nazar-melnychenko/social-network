@@ -1,10 +1,10 @@
 import React from "react"
 import "./Profile.sass"
 import Profile from "./Profile"
-import {connect} from "react-redux"
-import {setUserProfile, getProfileUser, getStatusUser, updateStatusUser} from "../../redux/profileReducer"
-import {withAuthRedirect} from "../../hoc/withAuthRedirect"
-import {compose} from "redux"
+import { connect } from "react-redux"
+import { getProfileUser, getStatusUser, setUserProfile, updateStatusUser } from "../../redux/profileReducer"
+import { withAuthRedirect } from "../../hoc/withAuthRedirect"
+import { compose } from "redux"
 import Preloader from "../common/Preloader/Preloader"
 
 
@@ -28,13 +28,14 @@ class ProfileContainer extends React.Component {
 	}
 
 	render() {
+		const { profile, status, updateStatusUser, match, userId } = this.props
 		return <>
-			{!this.props.profile
+			{!profile
 				? <Preloader/>
-				: <Profile profile={this.props.profile}
-				           status={this.props.status}
-				           updateStatusUser={this.props.updateStatusUser}
-				           isOwner={!!this.props.match.params.userId}
+				: <Profile profile={profile}
+				           status={status}
+				           updateStatusUser={updateStatusUser}
+				           isOwner={!match.params.userId || +match.params.userId === +userId}
 				/>
 			}
 		</>
@@ -50,5 +51,5 @@ let mapStateToProps = (state) => ({
 
 export default compose(
 	withAuthRedirect,
-	connect(mapStateToProps, {setUserProfile, getProfileUser, getStatusUser, updateStatusUser})
+	connect(mapStateToProps, { setUserProfile, getProfileUser, getStatusUser, updateStatusUser })
 )(ProfileContainer)

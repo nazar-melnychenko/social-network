@@ -1,9 +1,5 @@
-import {connect} from "react-redux"
-import {
-	getUsers,
-	follow,
-	unFollow
-} from '../../redux/usersReducer'
+import { connect } from "react-redux"
+import { follow, getUsers, unFollow } from '../../redux/usersReducer'
 import React from "react"
 import Users from "./Users"
 import {
@@ -20,7 +16,7 @@ import Paginator from "../common/Paginator/Paginator";
 class UsersContainer extends React.Component {
 
 	componentDidMount() {
-		const {currentPage, pageSize} = this.props
+		const { currentPage, pageSize } = this.props
 		this.props.getUsers(currentPage, pageSize)
 	}
 
@@ -34,7 +30,7 @@ class UsersContainer extends React.Component {
 	}
 
 	getUsersForCurrentPage = (currentPage) => {
-		const {pageSize} = this.props
+		const { pageSize } = this.props
 		this.props.getUsers(currentPage, pageSize)
 	}
 
@@ -67,7 +63,7 @@ const mapStateToProps = (state) => ({
 	followingInProgress: getFollowingInProgress(state)
 })
 
-export default connect(mapStateToProps, {getUsers, follow, unFollow})(UsersContainer)
+export default connect(mapStateToProps, { getUsers, follow, unFollow })(UsersContainer)
 
 
 

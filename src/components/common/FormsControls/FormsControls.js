@@ -1,8 +1,8 @@
 import React from "react"
 import "./FormsControls.sass"
-import {Field} from "redux-form";
+import { Field } from "redux-form";
 
-const FormControl = ({input, children, meta:{touched, error}}) => {
+const FormControl = ({ children, meta: { touched, error } }) => {
 
 	const hasError = touched && error
 
@@ -16,12 +16,12 @@ const FormControl = ({input, children, meta:{touched, error}}) => {
 }
 
 export const Textarea = (props) => {
-	const {input, meta, ...restProps} = props
+	const { input, meta, ...restProps } = props
 	return <FormControl {...props}><textarea {...input} {...restProps}/></FormControl>
 }
 
 export const Input = (props) => {
-	const {input, meta, ...restProps} = props
+	const { input, meta, ...restProps } = props
 	return <FormControl {...props}><input {...input} {...restProps}/></FormControl>
 }
 

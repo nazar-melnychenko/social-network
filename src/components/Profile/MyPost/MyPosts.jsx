@@ -1,9 +1,9 @@
 import React from "react"
 import "./MyPosts.sass"
 import Post from "./Post/Post"
-import {Field, reduxForm} from "redux-form"
-import {maxLength, required} from "../../../utils/validators/validators"
-import {Textarea} from "../../common/FormsControls/FormsControls"
+import { Field, reduxForm } from "redux-form"
+import { maxLength, required } from "../../../utils/validators/validators"
+import { Textarea } from "../../common/FormsControls/FormsControls"
 
 const maxLength10 = maxLength(10)
 
@@ -21,18 +21,19 @@ let PostForm = (props) => {
 	)
 }
 
-PostForm = reduxForm({form: 'post'})(PostForm)
+PostForm = reduxForm({ form: 'post' })(PostForm)
 
-const MyPosts = (props) => {
+const MyPosts = ({ addPost, isOwner, posts }) => {
+
 	const addNewPost = (formData) => {
-		props.addPost(formData.massage)
+		addPost(formData.massage)
 		formData.massage = ''
 	}
 
 	return (
 		<>
-			<PostForm onSubmit={addNewPost}/>
-			{[...props.posts].reverse().map((item, i) =>
+			{isOwner && <PostForm onSubmit={addNewPost}/>}
+			{[...posts].reverse().map((item, i) =>
 				<Post key={i} text={item.post} likeCount={item.likeCount}/>
 			)}
 		</>

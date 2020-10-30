@@ -6,35 +6,35 @@ let store = {
 	_state: {
 		profilePage: {
 			posts: [
-				{id: 1, post: 'Post 1', likeCount: 3},
-				{id: 2, post: 'Post 2', likeCount: 5},
-				{id: 3, post: 'Post 3', likeCount: 7},
+				{ id: 1, post: 'Post 1', likeCount: 3 },
+				{ id: 2, post: 'Post 2', likeCount: 5 },
+				{ id: 3, post: 'Post 3', likeCount: 7 },
 			],
 			newPostTemp: '',
 		},
 		dialogsPage: {
 			dialogs: [
-				{id: 1, name: 'Nazar'},
-				{id: 2, name: 'Andriy'},
-				{id: 3, name: 'Saha'},
-				{id: 4, name: 'Viktor'},
-				{id: 5, name: 'Sveta'},
-				{id: 6, name: 'Valera'},
-				{id: 7, name: 'Masha'},
+				{ id: 1, name: 'Nazar' },
+				{ id: 2, name: 'Andriy' },
+				{ id: 3, name: 'Saha' },
+				{ id: 4, name: 'Viktor' },
+				{ id: 5, name: 'Sveta' },
+				{ id: 6, name: 'Valera' },
+				{ id: 7, name: 'Masha' },
 			],
 			massages: [
-				{id: 1, massage: 'Message 1'},
-				{id: 2, massage: 'Message 2'},
-				{id: 3, massage: 'Message 3'},
-				{id: 4, massage: 'Message 4'},
-				{id: 5, massage: 'Message 5'},
+				{ id: 1, massage: 'Message 1' },
+				{ id: 2, massage: 'Message 2' },
+				{ id: 3, massage: 'Message 3' },
+				{ id: 4, massage: 'Message 4' },
+				{ id: 5, massage: 'Message 5' },
 			],
 			tempMassage: '',
 		},
 		friends: [
-			{id: 1, name: 'Andriy'},
-			{id: 2, name: 'Sasha'},
-			{id: 3, name: 'Sveta'},
+			{ id: 1, name: 'Andriy' },
+			{ id: 2, name: 'Sasha' },
+			{ id: 3, name: 'Sveta' },
 		],
 	},
 	_callSubscriber() {
@@ -59,7 +59,6 @@ let store = {
 	}
 
 }
-
 
 
 export default store

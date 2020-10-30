@@ -1,5 +1,5 @@
-import {authAPI} from "../api/api"
-import {stopSubmit} from "redux-form"
+import { authAPI } from "../api/api"
+import { stopSubmit } from "redux-form"
 
 const init = {
 	id: null,
@@ -31,16 +31,16 @@ const authReducer = (state = init, action) => {
 
 const setAuthUsersData = (id, email, login, isAuth, captcha) => ({
 	type: 'auth/SET-USERS-DATA',
-	payload: {id, email, login, isAuth, captcha}
+	payload: { id, email, login, isAuth, captcha }
 })
-const setCaptcha = (url) => ({type: 'auth/SET-CAPTCHA', url})
+const setCaptcha = (url) => ({ type: 'auth/SET-CAPTCHA', url })
 
 /*---Thunk---*/
 
 export const auth = () => async (dispatch) => {
 	const response = await authAPI.authMe()
 	if (response.data.resultCode === 0) {
-		let {id, email, login} = response.data.data
+		let { id, email, login } = response.data.data
 		dispatch(setAuthUsersData(id, email, login, true, null))
 	}
 }
@@ -48,7 +48,7 @@ export const auth = () => async (dispatch) => {
 const getCaptcha = (res) => async (dispatch) => {
 	const messages = res.data.messages.length > 0 ? res.data.messages[0] : "Error"
 	let response = await authAPI.captcha()
-	dispatch(stopSubmit("login", {_error: messages}))
+	dispatch(stopSubmit("login", { _error: messages }))
 	dispatch(setCaptcha(response.data.url))
 }
 
@@ -60,7 +60,7 @@ export const login = (email, password, rememberMe, captcha) => async (dispatch) 
 		dispatch(getCaptcha(response))
 	} else {
 		const messages = response.data.messages.length > 0 ? response.data.messages[0] : "Error"
-		dispatch(stopSubmit("login", {_error: messages}))
+		dispatch(stopSubmit("login", { _error: messages }))
 	}
 }
 

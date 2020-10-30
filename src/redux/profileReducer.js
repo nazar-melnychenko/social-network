@@ -1,10 +1,10 @@
-import {profileAPI} from "../api/api"
+import { profileAPI } from "../api/api"
 
 let init = {
 	posts: [
-		{id: 1, post: 'Post 1', likeCount: 3},
-		{id: 2, post: 'Post 2', likeCount: 5},
-		{id: 3, post: 'Post 3', likeCount: 7},
+		{ id: 1, post: 'Post 1', likeCount: 3 },
+		{ id: 2, post: 'Post 2', likeCount: 5 },
+		{ id: 3, post: 'Post 3', likeCount: 7 },
 	],
 	profile: null,
 	status: ''
@@ -17,7 +17,7 @@ const profileReducer = (state = init, action) => {
 			if (action.massage !== '') {
 				return {
 					...state,
-					posts: [...state.posts, {id: 8, post: action.massage, likeCount: 3}]
+					posts: [...state.posts, { id: 8, post: action.massage, likeCount: 3 }]
 				}
 			}
 			return state
@@ -34,15 +34,24 @@ const profileReducer = (state = init, action) => {
 				status: action.status
 			}
 
+		case 'SAVE-PHOTO-SUCCESS':
+			return {
+				...state,
+				profile: {
+					...state.profile,
+					photos: action.photos
+				}
+			}
 
 		default:
 			return state
 	}
 }
 
-export const addPost = (massage) => ({type: 'ADD-POST', massage})
-export const setUserProfile = (profile) => ({type: 'SET-USER-PROFILE', userProfile: profile})
-const setUserStatus = (status) => ({type: 'SET-USER-STATUS', status})
+export const addPost = (massage) => ({ type: 'ADD-POST', massage })
+export const setUserProfile = (profile) => ({ type: 'SET-USER-PROFILE', userProfile: profile })
+const setUserStatus = (status) => ({ type: 'SET-USER-STATUS', status })
+const savePhotoSuccess = (photos) => ({ type: 'SAVE-PHOTO-SUCCESS', photos })
 
 /*---Thunk---*/
 
@@ -65,6 +74,15 @@ export const updateStatusUser = (status) => (dispatch) => {
 		.then(response => {
 			if (response.data.resultCode === 0) {
 				dispatch(setUserStatus(status))
+			}
+		})
+}
+
+export const savePhoto = (file) => (dispatch) => {
+	profileAPI.savePhoto(file)
+		.then(response => {
+			if (response.data.resultCode === 0) {
+				dispatch(savePhotoSuccess(response.data.data.photos))
 			}
 		})
 }

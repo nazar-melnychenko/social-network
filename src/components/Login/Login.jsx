@@ -1,10 +1,10 @@
 import React from "react"
 import "./Login.sass"
-import {reduxForm} from "redux-form"
-import {createField, Input} from "../common/FormsControls/FormsControls"
-import {email, required} from "../../utils/validators/validators"
+import { reduxForm } from "redux-form"
+import { createField, Input } from "../common/FormsControls/FormsControls"
+import { email, required } from "../../utils/validators/validators"
 
-let LoginForm = ({handleSubmit, captcha, error}) => {
+let LoginForm = ({ handleSubmit, captcha, error }) => {
 	return (
 		<form onSubmit={handleSubmit}>
 			{createField(Input, 'email', 'email', 'E-mail', [required, email])}
@@ -24,9 +24,9 @@ let LoginForm = ({handleSubmit, captcha, error}) => {
 	)
 }
 
-LoginForm = reduxForm({form: 'login'})(LoginForm)
+LoginForm = reduxForm({ form: 'login' })(LoginForm)
 
-const Login = ({login, captcha}) => {
+const Login = ({ login, captcha }) => {
 
 	const onSubmit = (formData) => {
 		login(formData.email, formData.password, formData.rememberMe, formData.captcha)

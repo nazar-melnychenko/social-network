@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import "./Paginator.sass"
 
 
-let Paginator = ({totalItemsCount, pageSize, onSetCurrentPage, currentPage, positionSize = 10}) => {
+let Paginator = ({ totalItemsCount, pageSize, onSetCurrentPage, currentPage, positionSize = 10 }) => {
 
 	let pages = Math.ceil(totalItemsCount / pageSize)
 	let totalPages = []
