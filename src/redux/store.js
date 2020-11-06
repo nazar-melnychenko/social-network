@@ -9,6 +9,7 @@ import friendsReducer from "./friendsReducer"
 import usersReducer from "./usersReducer"
 import authReducer from "./authReducer"
 import rootSagas from "../sagas";
+import SettingsProfileReducer from "./settingsProfile/reducer";
 
 let reducers = combineReducers({
 	app: appReducer,
@@ -17,7 +18,8 @@ let reducers = combineReducers({
 	friends: friendsReducer,
 	usersPage: usersReducer,
 	auth: authReducer,
-	form: formReducer
+	form: formReducer,
+	settingsProfile: SettingsProfileReducer
 })
 
 const sagaMiddleware = createSagaMiddleware()

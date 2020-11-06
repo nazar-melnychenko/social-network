@@ -6,7 +6,6 @@ const init = {
 	email: null,
 	login: null,
 	isAuth: false,
-	isFetching: false,
 	captcha: null,
 }
 

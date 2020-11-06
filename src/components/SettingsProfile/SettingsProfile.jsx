@@ -1,18 +1,19 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Checkbox } from "antd";
-import { Formik } from "formik";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { CustomInput } from "../common/CustomInput/CustomInput";
-import { getProfileUser, savePhoto } from "../../redux/profileReducer";
-import Preloader from "../common/Preloader/Preloader";
-import avatar from "../../assets/img/avatar.png";
+import { useDispatch, useSelector } from "react-redux"
+import { Button, Checkbox } from "antd"
+import { Formik } from "formik"
+import { CustomInput } from "../common/CustomInput/CustomInput"
+import { getProfileUser, savePhoto } from "../../redux/profileReducer"
+import Preloader from "../common/Preloader/Preloader"
+import avatar from "../../assets/img/avatar.png"
 import './SettingsProfile.sass'
+import { sendProfileSettings } from "../../redux/settingsProfile/actionCreators";
 
 const SettingsProfile = () => {
 	const dispatch = useDispatch()
 	const authId = useSelector(({ auth }) => auth.id)
-	const profile = useSelector(({ profilePage }) => profilePage?.profile)
+	const profile = useSelector(({ profilePage }) => profilePage.profile)
+	const isSending = useSelector(({ settingsProfile }) => settingsProfile.isSending)
 
 	useEffect(() => {
 		if (authId !== profile?.userId) {
@@ -28,8 +29,9 @@ const SettingsProfile = () => {
 	}
 
 	const handleOnSubmit = (data) => {
-		console.log(data)
+		dispatch(sendProfileSettings(data))
 	}
+
 
 	return (
 		<>
@@ -39,44 +41,45 @@ const SettingsProfile = () => {
 					<h2>Profile Settings</h2>
 					<div className="formPhotoWrapper">
 						<div className="form">
-							<Formik initialValues={{...profile}} onSubmit={handleOnSubmit}>
+							<Formik initialValues={{ ...profile }} onSubmit={handleOnSubmit}>
 								{({ handleSubmit, values, handleChange }) => {
 									return (
-										<form onSubmit={handleSubmit}>
-											<h3>General settings</h3>
-											<CustomInput
-												label="Full Name"
-												onChange={handleChange}
-												value={values.fullName}
-												name="fullName"
-											/>
+										<>
+											<form onSubmit={handleSubmit}>
+												<h3>General settings</h3>
+												<CustomInput
+													label="Full Name"
+													onChange={handleChange}
+													value={values.fullName}
+													name="fullName"
+												/>
 
-											<Checkbox
-												onChange={handleChange}
-												name="lookingForAJob"
-												checked={values.lookingForAJob}>Looking For A Job
-											</Checkbox><br/><br/>
+												<Checkbox
+													onChange={handleChange}
+													name="lookingForAJob"
+													checked={values.lookingForAJob}>Looking For A Job
+												</Checkbox><br/><br/>
 
-											<CustomInput
-												label="Looking For A Job Description"
-												type="textarea"
-												onChange={handleChange}
-												value={values.lookingForAJobDescription}
-												name="lookingForAJobDescription"
-											/>
+												<CustomInput
+													label="Looking For A Job Description"
+													type="textarea"
+													onChange={handleChange}
+													value={values.lookingForAJobDescription}
+													name="lookingForAJobDescription"
+												/>
 
-											<CustomInput
-												label="About Me"
-												type="textarea"
-												onChange={handleChange}
-												value={values.aboutMe}
-												name="aboutMe"
-											/>
+												<CustomInput
+													label="About Me"
+													type="textarea"
+													onChange={handleChange}
+													value={values.aboutMe}
+													name="aboutMe"
+												/>
 
-											<h3>Contacts Settings</h3>
+												<h3>Contacts Settings</h3>
 
-											{Object.keys(profile?.contacts).map((k,i) => {
-												return (
+												{Object.keys(profile?.contacts).map((k, i) => {
+													return (
 														<CustomInput
 															key={i}
 															label={k.charAt(0).toUpperCase() + k.slice(1)}
@@ -84,11 +87,11 @@ const SettingsProfile = () => {
 															value={values.contacts[k]}
 															name={`contacts.${k}`}
 														/>
-												)
-											})}
-
-											<Button htmlType="submit" type="primary" loading={false}>Save changes</Button>
-										</form>
+													)
+												})}
+												<Button htmlType="submit" type="primary" loading={isSending}>Save changes</Button>
+											</form>
+										</>
 									)
 								}}
 							</Formik>
@@ -106,4 +109,4 @@ const SettingsProfile = () => {
 }
 
 
-export default withAuthRedirect(SettingsProfile)
+export default SettingsProfile

@@ -1,7 +1,10 @@
-import { takeLatest } from "@redux-saga/core/effects";
+import { all } from "redux-saga/effects"
+import sendProfileSettingsWatchers from "../redux/settingsProfile/sagaWatchers"
 
 function* rootSagas() {
-	yield takeLatest('','')
+	yield all([
+			...sendProfileSettingsWatchers
+		])
 }
 
 export default rootSagas

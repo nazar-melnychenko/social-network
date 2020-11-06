@@ -42,6 +42,7 @@ class App extends React.Component {
 
 	render() {
 		const { collapsed } = this.state;
+		const { isAuth } = this.props;
 		return (
 			<>
 				{this.props.initialized
@@ -66,11 +67,11 @@ class App extends React.Component {
 								<Menu.Item key="5" icon={<SmileTwoTone/>}>
 									<Link to="/users">Users</Link>
 								</Menu.Item>
-								<SubMenu key="sub1" icon={<SettingTwoTone/>} title="Settings">
+								{isAuth && <SubMenu key="sub1" icon={<SettingTwoTone/>} title="Settings">
 									<Menu.Item key="6">
 										<Link to="/settings/profileSettings">Profile</Link>
 									</Menu.Item>
-								</SubMenu>
+								</SubMenu>}
 							</Menu>
 						</Sider>
 						<Layout className="site-layout">
@@ -98,7 +99,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	initialized: state.app.initialized
+	initialized: state.app.initialized,
+	isAuth: state.auth.isAuth
 })
 
 export default connect(mapStateToProps, { initializeApp })(App)
