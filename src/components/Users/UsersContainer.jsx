@@ -1,6 +1,8 @@
 import { connect } from "react-redux"
-import { follow, getUsers, unFollow } from '../../redux/usersReducer'
+import { follow, getUsers, onPageSizeChange, unFollow } from '../../redux/usersReducer'
 import React from "react"
+import { Pagination } from "antd";
+import './UsersContainer.sass'
 import Users from "./Users"
 import {
 	getAllUsers,
@@ -10,8 +12,7 @@ import {
 	getPageSize,
 	getTotalUsersCount
 } from "../../redux/selectors/users"
-import Paginator from "../common/Paginator/Paginator";
-import Preloader from "../common/Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader"
 
 
 class UsersContainer extends React.Component {
@@ -30,9 +31,12 @@ class UsersContainer extends React.Component {
 
 	}
 
-	getUsersForCurrentPage = (currentPage) => {
-		const { pageSize } = this.props
+	getUsersForCurrentPage = (currentPage, pageSize) => {
 		this.props.getUsers(currentPage, pageSize)
+	}
+
+	onShowSizeChange = (current, size) => {
+		this.props.onPageSizeChange(size);
 	}
 
 	render() {
@@ -46,12 +50,15 @@ class UsersContainer extends React.Component {
 						       onUnFollow={this.onUnFollow}
 						       followingInProgress={this.props.followingInProgress}
 						/>
-						<Paginator
-							totalItemsCount={this.props.totalUsersCount}
-							pageSize={this.props.pageSize}
-							onSetCurrentPage={this.getUsersForCurrentPage}
-							currentPage={this.props.currentPage}
-						/>
+						<div className="paginationWrapper">
+							<Pagination onChange={this.getUsersForCurrentPage}
+							            defaultPageSize={this.props.pageSize}
+							            defaultCurrent={this.props.currentPage}
+							            total={this.props.totalUsersCount}
+							            onShowSizeChange={this.onShowSizeChange}
+
+							/>
+						</div>
 					</div>
 				}
 			</>
@@ -68,7 +75,7 @@ const mapStateToProps = (state) => ({
 	followingInProgress: getFollowingInProgress(state)
 })
 
-export default connect(mapStateToProps, { getUsers, follow, unFollow })(UsersContainer)
+export default connect(mapStateToProps, { getUsers, follow, unFollow, onPageSizeChange })(UsersContainer)
 
 
 

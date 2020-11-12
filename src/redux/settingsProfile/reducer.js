@@ -1,23 +1,43 @@
-import { SEND_PROFILE_CHANGES, SEND_PROFILE_CHANGES_SUCCESS } from "./actionTypes";
+import {
+	CLEARED_PROFILE_NOTIFICATIONS,
+	SEND_PROFILE_CHANGES,
+	SEND_PROFILE_CHANGES_FAILED,
+	SEND_PROFILE_CHANGES_SUCCESS
+} from "./actionTypes";
 
 const init = {
 	isSending: false,
-	error: false
+	isSentCompleted: false,
+	errors: false
 }
 
-const SettingsProfileReducer = (state = init, { type }) => {
-	switch (type){
+const SettingsProfileReducer = (state = init, { type, payload }) => {
+	switch (type) {
 		case SEND_PROFILE_CHANGES:
 			return {
 				...state,
 				isSending: true,
-				error: null
+				errors: null
 			}
 		case SEND_PROFILE_CHANGES_SUCCESS:
 			return {
 				...state,
 				isSending: false,
-				error: null
+				isSentCompleted: true,
+				errors: null
+			}
+		case SEND_PROFILE_CHANGES_FAILED:
+			return {
+				...state,
+				isSending: false,
+				isSentCompleted: false,
+				errors: payload
+			}
+		case CLEARED_PROFILE_NOTIFICATIONS:
+			return {
+				...state,
+				isSentCompleted: false,
+				errors: null
 			}
 		default:
 			return state

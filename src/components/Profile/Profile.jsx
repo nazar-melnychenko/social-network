@@ -12,6 +12,7 @@ const Profile = (props) => {
 			             updateStatusUser={props.updateStatusUser}
 			             isOwner={props.isOwner}
 			/>
+			<hr/>
 			<MyPostsContainer isOwner={props.isOwner}/>
 		</div>
 	)

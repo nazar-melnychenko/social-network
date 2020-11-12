@@ -3,6 +3,7 @@ import "./Login.sass"
 import { reduxForm } from "redux-form"
 import { createField, Input } from "../common/FormsControls/FormsControls"
 import { email, required } from "../../utils/validators/validators"
+import { authAPI } from "../../api/api";
 
 let LoginForm = ({ handleSubmit, captcha, error }) => {
 	return (
@@ -31,6 +32,8 @@ const Login = ({ login, captcha }) => {
 	const onSubmit = (formData) => {
 		login(formData.email, formData.password, formData.rememberMe, formData.captcha)
 	}
+
+	 authAPI.signUp({Name: 'Shjkdiiihfk23', Email: 'aeftmmcd@10mail.org', Password: 'dfggdfgf', AcceptOffer: true})
 
 	return (
 		<>

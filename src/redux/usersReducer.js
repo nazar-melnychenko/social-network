@@ -2,7 +2,7 @@ import { followAPI, usersAPI } from "../api/api"
 
 const init = {
 	users: [],
-	pageSize: 12,
+	pageSize: 10,
 	totalUsersCount: 0,
 	currentPage: 1,
 	isFetching: false,
@@ -46,6 +46,11 @@ const usersReducer = (state = init, action) => {
 				...state,
 				currentPage: action.currentPage
 			}
+		case 'SET-SIZE-PAGE':
+			return {
+				...state,
+				pageSize: action.size
+			}
 
 		case 'SET-TOTAL-USER-COUNT':
 			return {
@@ -82,6 +87,7 @@ const setTotalPage = (totalUsersCount) => ({ type: 'SET-TOTAL-USER-COUNT', total
 const setFetching = (isFetching) => ({ type: 'SET-FETCHING', isFetching })
 const toggleFollowingProgress = (isProgress, userId) => ({ type: 'SET-FOLLOWING-PROGRESS', isProgress, userId })
 const setCurrentPage = (currentPage) => ({ type: 'SET-CURRENT-PAGE', currentPage })
+export const onPageSizeChange = (size) => ({ type: 'SET-SIZE-PAGE', size })
 
 /*---Function---*/
 

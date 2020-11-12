@@ -1,26 +1,32 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Checkbox } from "antd"
+import { Alert, Button, Checkbox } from "antd"
 import { Formik } from "formik"
 import { CustomInput } from "../common/CustomInput/CustomInput"
 import { getProfileUser, savePhoto } from "../../redux/profileReducer"
 import Preloader from "../common/Preloader/Preloader"
 import avatar from "../../assets/img/avatar.png"
 import './SettingsProfile.sass'
-import { sendProfileSettings } from "../../redux/settingsProfile/actionCreators";
+import { clearedProfileNotifications, sendProfileSettings } from "../../redux/settingsProfile/actionCreators";
 
 const SettingsProfile = () => {
 	const dispatch = useDispatch()
 	const authId = useSelector(({ auth }) => auth.id)
 	const profile = useSelector(({ profilePage }) => profilePage.profile)
 	const isSending = useSelector(({ settingsProfile }) => settingsProfile.isSending)
+	const errors = useSelector(({ settingsProfile }) => settingsProfile.errors)
+	const isSentCompleted = useSelector(({ settingsProfile }) => settingsProfile.isSentCompleted)
 
 	useEffect(() => {
 		if (authId !== profile?.userId) {
 			dispatch(getProfileUser(authId))
 		}
+
+		return () => dispatch(clearedProfileNotifications())
+
 		// eslint-disable-next-line
 	}, [])
+
 
 	const onMainPhotoSelected = (e) => {
 		if (e.target.files.length) {
@@ -38,8 +44,8 @@ const SettingsProfile = () => {
 			{authId !== profile?.userId
 				? <Preloader/>
 				: <div className="profileSettingsWrapper">
-					<h2>Profile Settings</h2>
-					<div className="formPhotoWrapper">
+						<h2>Profile Settings</h2>
+						<div className="formPhotoWrapper">
 						<div className="form">
 							<Formik initialValues={{ ...profile }} onSubmit={handleOnSubmit}>
 								{({ handleSubmit, values, handleChange }) => {
@@ -102,7 +108,13 @@ const SettingsProfile = () => {
 							<input type="file" onChange={onMainPhotoSelected}/>
 						</div>
 					</div>
-				</div>
+						<div className="errorsWrapper">
+							{errors && errors.map(i => <Alert className="error" message={i} type="error" showIcon closable/>)}
+							{isSentCompleted &&
+								<Alert className="error" message="All settings saved" type="success" showIcon closable/>
+							}
+						</div>
+					</div>
 			}
 		</>
 	)

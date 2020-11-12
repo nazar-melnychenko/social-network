@@ -1,10 +1,10 @@
-import * as axios from "axios"
+import axios from "axios"
 
 const instance = axios.create({
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',
 	withCredentials: true,
 	headers: {
-		'API-KEY': 'f85be700-12ab-4093-9068-b3ace80db902'
+		'API-KEY': '3446b39b-1655-413e-895c-56e87f4a4af6'
 	}
 })
 
@@ -49,6 +49,9 @@ export const profileAPI = {
 }
 
 export const authAPI = {
+	signUp(JoinModel) {
+		return axios.post('https://social-network.samuraijs.com/Auth/Auth/TryRegister',{ JoinModel })
+	},
 	authMe() {
 		return instance.get('auth/me/')
 	},

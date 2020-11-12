@@ -1,15 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import "./ProfileInfo.sass"
 import avatar from "../../../assets/img/avatar.png"
 import ProfileStatus from "./ProfileStatus"
-import ProfileData from "./ProfileData";
-import ProfileDataForm from "./ProfileDataForm";
+
 
 const ProfileInfo = ({ profile, status, updateStatusUser, isOwner }) => {
-
-	const [editMode, setEditMode] = useState(false)
-
-
+	const { fullName, photos, aboutMe, lookingForAJob, lookingForAJobDescription, contacts } = profile
 	return (
 		<>
 			<div className="image">
@@ -17,18 +13,24 @@ const ProfileInfo = ({ profile, status, updateStatusUser, isOwner }) => {
 					src="https://www.kuoni.co.uk/upload/inspiration/louise/which-caribbean-island/caribbean-island-header.jpg"
 					alt=""
 				/>
-				<img src={profile.photos.large || avatar} alt="Avatar" className="avatar"/>
+				<img src={photos.large || avatar} alt="Avatar" className="avatar"/>
 			</div>
-			<p>{profile.fullName}</p><br/>
+			<p>{fullName}</p><br/>
 			<ProfileStatus
 				status={status}
 				updateStatusUser={updateStatusUser}
 				isOwner={isOwner}
 			/>
-			{editMode
-				? <ProfileDataForm profile={profile} handleEditMode={() => setEditMode(false)}/>
-				: <ProfileData profile={profile} isOwner={isOwner} handleEditMode={() => setEditMode(true)}/>
-			}
+			<div className="description">
+				{aboutMe && <p>About Me: {aboutMe}</p> }
+				{lookingForAJob && <p>Looking For A Job?: {lookingForAJob ? 'Yes' : ''}</p>}
+				{lookingForAJob && lookingForAJobDescription && <p>Job Description: {lookingForAJobDescription}</p>}
+				<ul>
+					{Object.keys(contacts).map((k, i) => (
+						contacts[k] && <li key={i}><a href={contacts[k]} target="_blank" rel="noreferrer">{k}</a></li>: null
+					))}
+				</ul>
+			</div>
 		</>
 	)
 }
