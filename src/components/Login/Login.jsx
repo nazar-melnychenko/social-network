@@ -26,7 +26,6 @@ let LoginForm = ({ handleSubmit, captcha, error }) => {
 }
 
 LoginForm = reduxForm({ form: 'login' })(LoginForm)
-
 const Login = ({ login, captcha }) => {
 
 	const onSubmit = (formData) => {
