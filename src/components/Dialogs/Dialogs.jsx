@@ -1,9 +1,9 @@
-import React from "react"
-import "./Dialogs.sass"
-import { NavLink } from "react-router-dom"
-import { Field, reduxForm } from "redux-form"
-import { Textarea } from "../common/FormsControls/FormsControls"
-import { maxLength, required } from "../../utils/validators/validators"
+import React from 'react'
+import './Dialogs.sass'
+import { NavLink } from 'react-router-dom'
+import { Field, reduxForm } from 'redux-form'
+import { Textarea } from '../common/FormsControls/FormsControls'
+import { maxLength, required } from '../../utils/validators/validators'
 
 const maxLength50 = maxLength(50)
 

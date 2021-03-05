@@ -1,7 +1,7 @@
 import React from 'react'
-import "./User.sass"
-import avatar from "../../assets/img/avatar.png"
-import { NavLink } from "react-router-dom"
+import './User.sass'
+import avatar from '../../assets/img/avatar.png'
+import { NavLink } from 'react-router-dom'
 
 
 let User = ({ item, followingInProgress, onFollow, onUnFollow }) => {

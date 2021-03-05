@@ -1,4 +1,4 @@
-import { profileAPI } from "../api/api"
+import { profileAPI } from '../api/api'
 
 let init = {
 	posts: [

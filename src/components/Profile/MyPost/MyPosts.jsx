@@ -1,9 +1,9 @@
-import React from "react"
-import "./MyPosts.sass"
-import Post from "./Post/Post"
-import { Field, reduxForm } from "redux-form"
-import { maxLength, required } from "../../../utils/validators/validators"
-import { Textarea } from "../../common/FormsControls/FormsControls"
+import React from 'react'
+import './MyPosts.sass'
+import Post from './Post/Post'
+import { Field, reduxForm } from 'redux-form'
+import { maxLength, required } from '../../../utils/validators/validators'
+import { Textarea } from '../../common/FormsControls/FormsControls'
 
 const maxLength10 = maxLength(10)
 

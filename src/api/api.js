@@ -1,10 +1,10 @@
-import axios from "axios"
+import axios from 'axios'
 
 const instance = axios.create({
 	baseURL: 'https://social-network.samuraijs.com/api/1.0/',
 	withCredentials: true,
 	headers: {
-		'API-KEY': '3446b39b-1655-413e-895c-56e87f4a4af6'
+		'API-KEY': '780aa080-d23d-40e9-aa30-d5c233e8f61e'
 	}
 })
 
@@ -36,21 +36,21 @@ export const profileAPI = {
 	},
 	savePhoto(photoFile) {
 		const formData = new FormData();
-		formData.append("image", photoFile);
+		formData.append('image', photoFile);
 		return instance.put(`profile/photo`, formData, {
 			headers: {
 				'Content-Type': 'multipart/form-data'
 			}
 		})
 	},
-	updateProfile(contacts){
-		return instance.put('/profile',  contacts )
+	updateProfile(contacts) {
+		return instance.put('/profile', contacts)
 	}
 }
 
 export const authAPI = {
-	signUp(JoinModel) {
-		return axios.post('https://social-network.samuraijs.com/Auth/Auth/TryRegister',{ JoinModel })
+	createAccount(joinModel) {
+		return axios.post('https://social-network.samuraijs.com/Auth/Auth/TryRegister',{ joinModel })
 	},
 	authMe() {
 		return instance.get('auth/me/')
@@ -65,3 +65,40 @@ export const authAPI = {
 		return instance.get(`/security/get-captcha-url`)
 	}
 }
+
+export const dialogsAPI = {
+	async getDialogs() {
+		return instance.get('dialogs')
+	},
+	 startChatting(userId) {
+		return instance.put(`dialogs/${userId}`)
+	},
+	getMessages(userId) {
+		return instance.get(`dialogs/${userId}/messages`)
+	},
+	sendMessage(userId, body) {
+		return instance.post(`dialogs/${userId}/messages`, { body })
+	},
+	isMessageViewed(messageId) {
+		return instance.get(`dialogs/messages/${messageId}/viewed`)
+	},
+	moveToSpam(messageId) {
+		return instance.post(`dialogs/messages/${messageId}/spam`)
+	},
+	deleteMessage(messageId) {
+		return instance.delete(`dialogs/messages/${messageId}`)
+	},
+	restoreMessage(messageId) {
+		return instance.put(`dialogs/messages/${messageId}/restore`)
+	},
+	getNewestMessages(userId, date) {
+		return instance.get(`dialogs/${userId}/messages/new?newerThen=${date}`)
+	},
+	getNewMessages() {
+		return instance.get(`dialogs/messages/new/count`)
+	}
+}
+
+const body = 'test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test '
+
+dialogsAPI.getMessages(26)

@@ -1,6 +1,6 @@
-import React from "react"
-import { Redirect } from "react-router-dom"
-import { connect } from "react-redux"
+import React from 'react'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const mapStateToProps = (state) => ({
 	isAuth: state.auth.isAuth

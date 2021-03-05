@@ -1,4 +1,4 @@
-import profileReducer, { addPost } from "./profileReducer"
+import profileReducer, { addPost } from './profileReducer'
 
 let init = {
 	posts: [

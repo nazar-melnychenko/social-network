@@ -3,7 +3,7 @@ import {
 	SEND_PROFILE_CHANGES,
 	SEND_PROFILE_CHANGES_FAILED,
 	SEND_PROFILE_CHANGES_SUCCESS
-} from "./actionTypes";
+} from './actionTypes';
 
 const init = {
 	isSending: false,

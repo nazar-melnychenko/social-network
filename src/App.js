@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react'
 import { Layout, Menu } from 'antd';
-import { Link, Redirect, Route } from "react-router-dom"
+import { Link, Redirect, Route } from 'react-router-dom'
 import {
 	CustomerServiceTwoTone,
 	IdcardTwoTone,
@@ -10,17 +10,19 @@ import {
 	SmileTwoTone,
 } from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import "./App.sass"
-import HeaderContainer from "./components/Header/HeaderContainer"
-import DialogsContainer from "./components/Dialogs/DialogsContainer"
-import UsersContainer from "./components/Users/UsersContainer"
-import ProfileContainer from "./components/Profile/ProfileContainer"
-import LoginContainer from "./components/Login/LoginContainer"
-import { connect } from "react-redux"
-import { initializeApp } from "./redux/appReducer"
-import Preloader from "./components/common/Preloader/Preloader"
-import logo from "./assets/logo.png";
-import SettingsProfile from "./components/SettingsProfile/SettingsProfile";
+import './App.sass'
+import HeaderContainer from './components/Header/HeaderContainer'
+import DialogsContainer from './components/Dialogs/DialogsContainer'
+import UsersContainer from './components/Users/UsersContainer'
+import ProfileContainer from './components/Profile/ProfileContainer'
+import LoginContainer from './components/Login/LoginContainer'
+import { connect } from 'react-redux'
+import { initializeApp } from './redux/appReducer'
+import Preloader from './components/common/Preloader/Preloader'
+import logo from './assets/logo.png';
+import SettingsProfile from './components/SettingsProfile/SettingsProfile';
+import CreateAccount from './components/CreateAccount/CreateAccount';
+import Messages from './pages/Messages';
 
 const { Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -79,14 +81,15 @@ class App extends React.Component {
 							<Content style={{ margin: '12px' }}>
 								<div className="site-layout-background">
 									<Route path="/profile/:userId?" component={ProfileContainer}/>
-									<Route path="/dialogs" component={DialogsContainer}/>
+									<Route path="/dialogs" component={Messages}/>
 									<Route path="/users" component={UsersContainer}/>
 									<Route path="/login" component={LoginContainer}/>
+									<Route path="/createAccount" component={CreateAccount}/>
 									<Route path="/settings/profileSettings" component={SettingsProfile}/>
 									<Redirect to="/profile"/>
 								</div>
 							</Content>
-							<Footer style={{ textAlign: 'center' }}>©2020 Created by
+							<Footer style={{ textAlign: 'center' }}>©2021 Created by
 								<a href="https://github.com/nazar-melnychenko" target="_blank" rel="noreferrer"> Nazar M.</a>
 							</Footer>
 						</Layout>

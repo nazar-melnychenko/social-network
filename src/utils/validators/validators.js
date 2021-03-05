@@ -1,7 +1,7 @@
 export const required = (value) => (
 	value
 		? undefined
-		: "Field is required"
+		: 'Field is required'
 )
 
 export const maxLength = (maxLength) => (value) => (

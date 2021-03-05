@@ -7,18 +7,31 @@
 	min-height: 84px
 
 	.loginBlock
-		color: #1890ff
+		color: white
 		margin-right: 20px
 		font-size: 17px
 
-		a, span
+		a, &-logOut
 			text-decoration: none
 			font-size: 23px
-			font-weight: bold
 			cursor: pointer
-			margin-left: 20px
+			color: white
 
 			&:hover
 				transition: color 0.3s linear
-				color: white
+				color: #1890ff
+
+		&-loginName
+			margin-right: 20px
+			color: white
+			cursor: none
+
+		&-activeStyle
+			font-weight: bold
+			color: #1890ff !important
+
+		&-separator
+			padding: 0 10px
+			font-size: 23px
+			cursor: default
 

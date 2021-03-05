@@ -1,5 +1,5 @@
-import { Input } from "antd";
-import React from "react";
+import { Input } from 'antd';
+import React from 'react';
 
 export const CustomInput = ({ label, value, onChange, name, type }) => {
 	const { TextArea } = Input;

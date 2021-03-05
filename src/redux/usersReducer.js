@@ -1,4 +1,4 @@
-import { followAPI, usersAPI } from "../api/api"
+import { followAPI, usersAPI } from '../api/api'
 
 const init = {
 	users: [],

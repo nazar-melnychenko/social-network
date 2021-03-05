@@ -1,5 +1,5 @@
-import React from "react"
-import "./Post.sass"
+import React from 'react'
+import './Post.sass'
 
 const Post = (props) => {
 	return (

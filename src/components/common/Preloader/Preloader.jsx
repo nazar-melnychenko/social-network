@@ -1,6 +1,6 @@
-import React from "react"
-import "./Preloader.sass"
-import spinner from "../../../assets/img/spinner.gif"
+import React from 'react'
+import './Preloader.sass'
+import spinner from '../../../assets/img/spinner.gif'
 
 let Preloader = () => {
 	return (

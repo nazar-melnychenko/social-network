@@ -1,13 +1,13 @@
-import React from "react"
-import "./FormsControls.sass"
-import { Field } from "redux-form";
+import React from 'react'
+import './FormsControls.sass'
+import { Field } from 'redux-form';
 
 const FormControl = ({ children, meta: { touched, error } }) => {
 
 	const hasError = touched && error
 
 	return (
-		<div className={hasError ? "formControl error" : "formControl"}>
+		<div className={hasError ? 'formControl error' : 'formControl'}>
 			{children}
 			<br/>
 			{hasError && <span>{error}</span>}

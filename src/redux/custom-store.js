@@ -1,6 +1,6 @@
-import profileReducer from "./profileReducer"
-import dialogsReducer from "./dialogsReducer"
-import friendsReducer from "./friendsReducer"
+import profileReducer from './profileReducer'
+import dialogsReducer from './dialogsReducer'
+import friendsReducer from './friendsReducer'
 
 let store = {
 	_state: {

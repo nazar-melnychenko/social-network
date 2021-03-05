@@ -1,7 +1,7 @@
-import React from "react"
-import "./ProfileInfo.sass"
-import avatar from "../../../assets/img/avatar.png"
-import ProfileStatus from "./ProfileStatus"
+import React from 'react'
+import './ProfileInfo.sass'
+import avatar from '../../../assets/img/avatar.png'
+import ProfileStatus from './ProfileStatus'
 
 
 const ProfileInfo = ({ profile, status, updateStatusUser, isOwner }) => {
@@ -22,7 +22,7 @@ const ProfileInfo = ({ profile, status, updateStatusUser, isOwner }) => {
 				isOwner={isOwner}
 			/>
 			<div className="description">
-				{aboutMe && <p>About Me: {aboutMe}</p> }
+				{aboutMe && <p>About Me: {aboutMe}</p>}
 				{lookingForAJob && <p>Looking For A Job?: {lookingForAJob ? 'Yes' : ''}</p>}
 				{lookingForAJob && lookingForAJobDescription && <p>Job Description: {lookingForAJobDescription}</p>}
 				<ul>

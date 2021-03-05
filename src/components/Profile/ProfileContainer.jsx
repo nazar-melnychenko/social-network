@@ -1,11 +1,11 @@
-import React from "react"
-import "./Profile.sass"
-import Profile from "./Profile"
-import { connect } from "react-redux"
-import { getProfileUser, getStatusUser, setUserProfile, updateStatusUser } from "../../redux/profileReducer"
-import { withAuthRedirect } from "../../hoc/withAuthRedirect"
-import { compose } from "redux"
-import Preloader from "../common/Preloader/Preloader"
+import React from 'react'
+import './Profile.sass'
+import Profile from './Profile'
+import { connect } from 'react-redux'
+import { getProfileUser, getStatusUser, setUserProfile, updateStatusUser } from '../../redux/profileReducer'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+import { compose } from 'redux'
+import Preloader from '../common/Preloader/Preloader'
 
 
 class ProfileContainer extends React.Component {

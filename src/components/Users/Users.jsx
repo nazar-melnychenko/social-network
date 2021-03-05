@@ -1,6 +1,6 @@
 import React from 'react'
-import "./Users.sass"
-import User from "./User";
+import './Users.sass'
+import User from './User';
 
 
 let Users = ({ users, followingInProgress, onFollow, onUnFollow }) => {

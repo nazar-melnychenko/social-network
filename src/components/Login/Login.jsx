@@ -1,9 +1,9 @@
-import React from "react"
-import "./Login.sass"
-import { reduxForm } from "redux-form"
-import { createField, Input } from "../common/FormsControls/FormsControls"
-import { email, required } from "../../utils/validators/validators"
-import { authAPI } from "../../api/api";
+import React from 'react'
+import './Login.sass'
+import { reduxForm } from 'redux-form'
+import { createField, Input } from '../common/FormsControls/FormsControls'
+import { email, required } from '../../utils/validators/validators'
+import { Tabs } from 'antd';
 
 let LoginForm = ({ handleSubmit, captcha, error }) => {
 	return (
@@ -26,21 +26,29 @@ let LoginForm = ({ handleSubmit, captcha, error }) => {
 }
 
 LoginForm = reduxForm({ form: 'login' })(LoginForm)
+
 const Login = ({ login, captcha }) => {
+
+	const { TabPane } = Tabs;
 
 	const onSubmit = (formData) => {
 		login(formData.email, formData.password, formData.rememberMe, formData.captcha)
 	}
 
-	 authAPI.signUp({Name: 'Shjkdiiihfk23', Email: 'aeftmmcd@10mail.org', Password: 'dfggdfgf', AcceptOffer: true})
-
 	return (
-		<>
-			<div className="loginWrapper">
-				<h1>Sign In</h1>
-				<LoginForm onSubmit={onSubmit} captcha={captcha}/>
-			</div>
-		</>
+		<Tabs centered animated>
+			<TabPane tab="Sign In" key="1">
+				<div className="loginWrapper">
+					<LoginForm onSubmit={onSubmit} captcha={captcha}/>
+				</div>
+			</TabPane>
+			<TabPane tab="Forget password" key="2">
+				<div className="loginWrapper">
+					Coming soon ...
+				</div>
+			</TabPane>
+		</Tabs>
+
 	)
 }
 

@@ -1,9 +1,9 @@
-import { connect } from "react-redux"
+import { connect } from 'react-redux'
 import { follow, getUsers, onPageSizeChange, unFollow } from '../../redux/usersReducer'
-import React from "react"
-import { Pagination } from "antd";
+import React from 'react'
+import { Pagination } from 'antd';
 import './UsersContainer.sass'
-import Users from "./Users"
+import Users from './Users'
 import {
 	getAllUsers,
 	getCurrentPage,
@@ -11,8 +11,8 @@ import {
 	getIsFetching,
 	getPageSize,
 	getTotalUsersCount
-} from "../../redux/selectors/users"
-import Preloader from "../common/Preloader/Preloader"
+} from '../../redux/selectors/users'
+import Preloader from '../common/Preloader/Preloader'
 
 
 class UsersContainer extends React.Component {
