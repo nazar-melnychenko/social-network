@@ -67,6 +67,7 @@ export const authAPI = {
 }
 
 export const dialogsAPI = {
+
 	async getDialogs() {
 		return instance.get('dialogs')
 	},
