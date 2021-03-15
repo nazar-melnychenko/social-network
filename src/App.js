@@ -12,7 +12,6 @@ import {
 import 'antd/dist/antd.css';
 import './App.sass'
 import HeaderContainer from './components/Header/HeaderContainer'
-import DialogsContainer from './components/Dialogs/DialogsContainer'
 import UsersContainer from './components/Users/UsersContainer'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import LoginContainer from './components/Login/LoginContainer'
